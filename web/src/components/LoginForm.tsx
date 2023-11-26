@@ -42,7 +42,7 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
               </Label>
               <Input
                 id="login"
-                placeholder="Doctor id"
+                placeholder="doctor id"
                 type="email"
                 autoCapitalize="none"
                 autoComplete="email"

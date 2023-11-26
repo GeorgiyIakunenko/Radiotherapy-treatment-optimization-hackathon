@@ -18,12 +18,16 @@ export const PatientsTable = () => {
   console.log(search);
   const patients = usePatientsStore((state) => state.patients);
 
+  const searchPatients = (search: string) => {
+    console.log(search);
+  };
+
   return (
     <div className="w-4/5 mx-auto">
       <div className="flex gap-5 items-center mb-3">
         <Command className="rounded-lg border shadow-md">
           <CommandInput
-            onInput={(event) => setSearch(event.currentTarget.value)}
+            onInput={(event) => searchPatients(event.currentTarget.value)}
             placeholder="Search for patients"
           />
         </Command>
@@ -44,22 +48,24 @@ export const PatientsTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-            {patients.map((patient) => (
-              <TableRow>
-                <TableCell className="font-medium" key={patient.tajNumber}>
-                  <Checkbox className="" />
-                </TableCell>
-                <TableCell>{patient.tajNumber}</TableCell>
-                <TableCell>{patient.fullname}</TableCell>
-                <TableCell>{patient.birthDate}</TableCell>
-                <TableCell>{patient.weight}</TableCell>
-                <TableCell>{patient.height}</TableCell>
-                <TableCell>{patient.region}</TableCell>
-                <TableCell>{patient.inpatient ? "Yes" : "No"}</TableCell>
-                <TableCell>{patient.sessionsLeft}</TableCell>
+          {patients.map((patient) => (
+            <TableRow key={patient.tajNumber}>
+              <TableCell className="font-medium" key={patient.tajNumber}>
+                <Checkbox className="" />
+              </TableCell>
+              <TableCell>{patient.tajNumber}</TableCell>
+              <TableCell>{patient.fullname}</TableCell>
+              <TableCell>{patient.birthDate}</TableCell>
+              <TableCell>{patient.weight}</TableCell>
+              <TableCell>{patient.height}</TableCell>
+              <TableCell>{patient.region}</TableCell>
+              <TableCell>{patient.inpatient ? "Yes" : "No"}</TableCell>
+              <TableCell>{patient.sessionsLeft}</TableCell>
+              <TableCell>
                 <PatientDropdownMenu patient={patient} />
-              </TableRow>
-            ))}
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </div>
